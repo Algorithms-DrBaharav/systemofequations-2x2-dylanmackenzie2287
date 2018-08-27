@@ -39,10 +39,27 @@ public class SystemOfEquations2x2 {
      * @return the two variables solution. If none, return null.
      */
     public double[] Solve2x2(){
-        
-        // Your code here
-        
-        return null;
+        if(bigA[0][0]==0 && bigA[1][0]==0)
+            return null;
+        if(bigA[0][0]==0 && bigA[0][1]==0)
+            return null;
+        if(bigA[1][0]==0 && bigA[1][1]==0)
+            return null;
+        if(bigA[0][1]==0 && bigA[1][1]==0)
+            return null;
+        double ratio = bigA[1][0]/bigA[0][0];
+        for(int i = 0; i<3; i++){
+            bigA[0][i] = bigA[0][i] * ratio;
+        }
+        double[] array = new double[3];
+        for(int y = 0; y<3; y++){
+           array[y] = bigA[0][y]-bigA[1][y]; 
+        }
+        double[] result = new double[2];
+        result[1] = array[2]/array[1];
+        result[0] = (bigA[0][2]-bigA[0][1]*result[1])/bigA[0][0];
+        System.out.println(result[0] + "," + result[1]);
+        return result;
     }
     
 }
